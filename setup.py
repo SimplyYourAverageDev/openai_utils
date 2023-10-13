@@ -1,17 +1,12 @@
 from setuptools import setup, find_packages
 
-import os
-
-VERSION = '2.5'
-
+VERSION = '2.6'
 DESCRIPTION = "Some external utilities to facilitate OpenAI's Utilites"
 
 with open("README.md", 'r') as r:
-
     long_description = r.read()
 
 # Setting up
-
 setup(
     name="openai-utilties",
     version=VERSION,
@@ -20,8 +15,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=["openai"],  # Libaries needed to run your libary correctly
-    keywords=['openai', 'utilities'],  # Keywords for search on Pypi
+    install_requires=["openai"],  # Libraries needed to run your library correctly
+    keywords=['openai', 'utilities'],  # Keywords for search on PyPI
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -30,6 +25,6 @@ setup(
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
     ],
-    license="MIT"  # The kind of License needed for your Libary
+    license="MIT",  # The kind of License needed for your Library
+    url="https://github.com/SimplyYourAverageDev/openai_utils"  # Link to your GitHub page
 )
-
