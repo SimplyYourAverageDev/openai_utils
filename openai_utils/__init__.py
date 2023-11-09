@@ -3,7 +3,7 @@ import openai
 def AskGPT(model: str, Context, temperature: float = 1) -> str:
     if type(Context) == list:
 
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model=model,
             messages=Context,
             temperature=temperature
@@ -12,7 +12,7 @@ def AskGPT(model: str, Context, temperature: float = 1) -> str:
 
     elif type(Context) == str:
 
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": Context}],
             temperature=temperature
