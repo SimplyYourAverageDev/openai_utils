@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=["openai"],  # Libraries needed to run your library correctly
+    install_requires=["openai>=1.2.3"],  # Libraries needed to run your library correctly
     keywords=['openai', 'utilities'],  # Keywords for search on PyPI
     classifiers=[
         "Development Status :: 5 - Production/Stable",

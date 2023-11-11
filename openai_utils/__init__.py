@@ -8,7 +8,7 @@ def AskGPT(model: str, Context, temperature: float = 1) -> str:
             messages=Context,
             temperature=temperature
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content
 
     elif type(Context) == str:
 
@@ -17,12 +17,12 @@ def AskGPT(model: str, Context, temperature: float = 1) -> str:
             messages=[{"role": "user", "content": Context}],
             temperature=temperature
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content
 
 
 def CreateEmbedding(String: str) -> list:
-    data = openai.Embedding.create(
+    reply = openai.Embedding.create(
         model="text-embedding-ada-002",
         input=String
     )
-    return data["data"][0]["embedding"]
+    return reply.data[0].embedding
