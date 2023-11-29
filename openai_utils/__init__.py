@@ -32,3 +32,4 @@ def ParseResponse(Response):
     MainParse['text'] = Response.choices[0].message.content
     MainParse['model'] = Response.model
     MainParse['function_call'] = Response.choices[0].message.function_call
+    return MainParse
