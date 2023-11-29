@@ -26,3 +26,9 @@ def CreateEmbedding(String: str) -> list:
         input=String
     )
     return reply.data[0].embedding
+
+def ParseResponse(Response):
+    MainParse = {}
+    MainParse['text'] = Response.choices[0].message.content
+    MainParse['model'] = Response.model
+    MainParse['function_call'] = Response.choices[0].message.function_call
