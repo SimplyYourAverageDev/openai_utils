@@ -33,3 +33,12 @@ def ParseResponse(Response):
     MainParse['model'] = Response.model
     MainParse['function_call'] = Response.choices[0].message.function_call
     return MainParse
+
+def GenerateImage(Prompt: str):
+  openai.images.generate(
+    model="dall-e-3",
+    prompt=Prompt,
+    size="1024x1024",
+    quality="standard",
+    style="natural",
+  )

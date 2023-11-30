@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '3.0'
+VERSION = '3.1'
 DESCRIPTION = "Some external utilities to facilitate OpenAI's Utilites"
 
 with open("README.md", 'r') as r:
