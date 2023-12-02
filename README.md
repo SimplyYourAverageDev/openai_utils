@@ -22,7 +22,7 @@ import openai-utils
 
 ## Features and Usage
 
-### 1. AskGPT
+### 1. GPT_Response
 
 #### Description
 
@@ -35,7 +35,7 @@ import openai
 import openai_utils as OA
 openai.api_key = "sk-????"
 
-OA.AskGPT(model: str, Context, temperature: float = 1) -> str
+OA.GPT_Response(Context, model: str = "gpt-3.5-turbo-1106", temperature: float = 1) -> str
 ```
 
 - `model`: The identifier of the GPT model to be used.
@@ -60,7 +60,7 @@ OA.CreateEmbedding(String: str) -> list
 
 - `String`: The text string for which the embedding is to be generated.
 
-### 3. ParseResponse
+### 3. SimplifyResponse
 
 #### Description
 
@@ -80,7 +80,7 @@ completion = client.chat.completions.create(
   messages=message,
 )
 
-OA.ParseResponse(completion)
+OA.SimplifyResponse(completion)
 ```
 
 - `Response`: The response object received from the GPT model.
@@ -88,6 +88,7 @@ OA.ParseResponse(completion)
 ### 4. GenerateImage
 
 #### Description
+
 
 Generates an image based on a provided prompt using the DALL-E model.
 
@@ -102,7 +103,7 @@ OA.GenerateImage(Prompt: str)
 ```
 
 - `Prompt`: The text prompt based on which the image will be generated.
-
+- ``
 ## Requirements
 
 - Python 3.x
@@ -113,7 +114,7 @@ OA.GenerateImage(Prompt: str)
 ### Example 1: Generating Text Response
 
 ```python
-response = AskGPT("gpt-3.5-turbo", "What is the capital of France?")
+response = GPT_Response("gpt-3.5-turbo", "What is the capital of France?")
 print(response)
 ```
 
@@ -142,7 +143,7 @@ completion = client.chat.completions.create(
   messages=message,
 )
 
-parsed_response = ParseResponse(completion)
+parsed_response = SimplifyResponse(completion)
 print(parsed_response)
 ```
 
@@ -153,7 +154,7 @@ import openai
 import openai_utils as OA
 
 openai.api_key = "sk-????"
-OA.GenerateImage("A sunset over a mountain range")
+OA.GenerateImage(Prompt: str, Quality = 'hd')
 ```
 
 ## Additional Notes
