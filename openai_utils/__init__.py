@@ -27,7 +27,7 @@ def CreateEmbedding(InputString: str) -> list:
     )
     return reply.data[0].embedding
 
-def SimplifyResponse(Response) -> dict:
+def formatResponse(Response) -> dict:
     if type(Response).__name__ == 'ChatCompletion':
         Simplified_Data = {}
         Simplified_Data['text'] = Response.choices[0].message.content

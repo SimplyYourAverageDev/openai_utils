@@ -60,7 +60,7 @@ OA.CreateEmbedding(String: str) -> list
 
 - `String`: The text string for which the embedding is to be generated.
 
-### 3. SimplifyResponse
+### 3. formatResponse
 
 #### Description
 
@@ -80,8 +80,11 @@ completion = client.chat.completions.create(
   messages=message,
 )
 
-OA.SimplifyResponse(completion)
+print(OA.formatResponse(completion))
 ```
+
+
+
 
 - `Response`: The response object received from the GPT model.
 
@@ -143,7 +146,7 @@ completion = client.chat.completions.create(
   messages=message,
 )
 
-parsed_response = SimplifyResponse(completion)
+parsed_response = formatResponse(completion)
 print(parsed_response)
 ```
 
