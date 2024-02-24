@@ -1,52 +1,47 @@
 import openai
 
-def GPT_Response(Context, model: str = "gpt-3.5-turbo-1106", temperature: float = 1) -> str:
-    if type(Context) == list:
-
+def generate_chat_response(context, model: str = "gpt-3.5-turbo-1106", temperature: float =  1) -> str:
+    if isinstance(context, list):
         response = openai.chat.completions.create(
             model=model,
-            messages=Context,
+            messages=context,
             temperature=temperature
         )
         return response.choices[0].message.content
 
-    elif type(Context) == str:
-
+    elif isinstance(context, str):
         response = openai.chat.completions.create(
             model=model,
-            messages=[{"role": "user", "content": Context}],
+            messages=[{"role": "user", "content": context}],
             temperature=temperature
         )
         return response.choices[0].message.content
 
-
-def CreateEmbedding(InputString: str) -> list:
-    reply = openai.Embedding.create(
-        model="text-embedding-ada-002",
-        input=InputString
-    )
+def create_text_embedding(input_string: str) -> list:
+    reply = openai.embeddings.create(model="text-embedding-ada-002",
+    input=input_string)
     return reply.data[0].embedding
 
-def formatResponse(Response) -> dict:
-    if type(Response).__name__ == 'ChatCompletion':
-        Simplified_Data = {}
-        Simplified_Data['text'] = Response.choices[0].message.content
-        Simplified_Data['model'] = Response.model
-        Simplified_Data['function_call'] = Response.choices[0].message.function_call
-        return Simplified_Data
-    elif type(Response).__name__ == 'ImagesResponse':
-        Simplified_Data = {}
-        Simplified_Data['ImageURL'] = Response.data[0].url
-        Simplified_Data['RevisedPrompt'] = Response.data[0].revised_prompt
-        return Simplified_Data
+def format_response_data(response) -> dict:
+    if type(response).__name__ == 'ChatCompletion':
+        simplified_data = {}
+        simplified_data['text'] = response.choices[0].message.content
+        simplified_data['model'] = response.model
+        simplified_data['function_call'] = response.choices[0].message.function_call
+        return simplified_data
+    elif type(response).__name__ == 'ImagesResponse':
+        simplified_data = {}
+        simplified_data['ImageURL'] = response.data[0].url
+        simplified_data['RevisedPrompt'] = response.data[0].revised_prompt
+        return simplified_data
         
 
-def GenerateImage(Prompt: str, Quality: str = 'standard'):
-  Image = openai.images.generate(
-    model="dall-e-3",
-    prompt=Prompt,
-    size="1024x1024",
-    quality=Quality,
-    style="natural",
-  )
-  return Image
+def generate_image_from_prompt(prompt: str, quality: str = 'standard'):
+    image = openai.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+        size="1024x1024",
+        quality=quality,
+        style="natural",
+    )
+    return image
