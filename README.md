@@ -1,166 +1,100 @@
-# openai-utilities Library Documentation
+# OpenAI Utility Library
 
-## Overview
+This library provides a set of utility functions to interact with OpenAI's API, focusing on generating chat responses, creating text embeddings, formatting response data, and generating images from prompts. It leverages the OpenAI Python client to facilitate these tasks.
 
-The `openai-utilities` library is a Python package that provides easy-to-use functions to interact with OpenAI's GPT and DALL-E models. This library simplifies the process of generating text responses, embeddings, and images using OpenAI's API.
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Functions](#functions)
+  - [generate_chat_response](#generate_chat_response)
+  - [create_text_embedding](#create_text_embedding)
+  - [format_response_data](#format_response_data)
+  - [generate_image_from_prompt](#generate_image_from_prompt)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
-To install the `openai-utilities` library, run the following command:
+To use this library, you need to have Python installed on your system. You also need to install the OpenAI Python client. You can do this by running the following command in your terminal:
 
 ```bash
-pip install openai-utilities
+pip install openai
 ```
 
-## Importing the Library
+## Usage
 
-After installation, you can import the library using:
+To use the functions provided by this library, you need to import the library and then call the desired function. Here's a basic example:
 
 ```python
-import openai-utils
+import openai_utility_library as oai
+
+# Generate a chat response
+context = "Hello, how can I help you today?"
+response = oai.generate_chat_response(context)
+print(response)
+
+# Create a text embedding
+input_string = "This is a sample text."
+embedding = oai.create_text_embedding(input_string)
+print(embedding)
+
+# Format response data
+formatted_data = oai.format_response_data(response)
+print(formatted_data)
+
+# Generate an image from a prompt
+prompt = "A beautiful sunset over the ocean."
+image = oai.generate_image_from_prompt(prompt)
+print(image)
 ```
 
-## Features and Usage
+## Functions
 
-### 1. GPT_Response
+### generate_chat_response
 
-#### Description
+This function generates a chat response based on the provided context. It supports both string and list inputs for the context.
 
-Generates a text response using the specified GPT model.
+- **Parameters:**
+  - `context`: The context for the chat response. Can be a string or a list of message objects.
+  - `model`: The model to use for generating the response. Default is "gpt-3.5-turbo-1106".
+  - `temperature`: The temperature for the model. Default is  1.
+- **Returns:** The generated chat response as a string.
 
-#### Usage
+### create_text_embedding
 
-```python
-import openai
-import openai_utils as OA
-openai.api_key = "sk-????"
+This function creates a text embedding for the given input string.
 
-OA.GPT_Response(Context, model: str = "gpt-3.5-turbo-1106", temperature: float = 1) -> str
-```
+- **Parameters:**
+  - `input_string`: The string for which to create the text embedding.
+- **Returns:** A list representing the text embedding.
 
-- `model`: The identifier of the GPT model to be used.
-- `Context`: The context or prompt to be provided to the model. Can be a string or a list of message objects.
-- `temperature`: Controls the randomness of the response. Higher values generate more random responses.
+### format_response_data
 
-### 2. CreateEmbedding
+This function formats the response data from OpenAI's API into a more readable format.
 
-#### Description
+- **Parameters:**
+  - `response`: The response object from OpenAI's API.
+- **Returns:** A dictionary containing the formatted response data.
 
-Generates an embedding for a given string using OpenAI's embedding model.
+### generate_image_from_prompt
 
-#### Usage
+This function generates an image based on the provided prompt.
 
-```python
-import openai
-import openai_utils as OA
-openai.api_key = "sk-????"
-
-OA.CreateEmbedding(String: str) -> list
-```
-
-- `String`: The text string for which the embedding is to be generated.
-
-### 3. formatResponse
-
-#### Description
-
-Parses the response from the GPT model and extracts useful information.
-
-#### Usage
-
-```python
-import openai
-import openai_utils as OA
-openai.api_key = "sk-????"
-
-message = [] # Your Messages
-
-completion = client.chat.completions.create(
-  model="gpt-3.5-turbo",
-  messages=message,
-)
-
-print(OA.formatResponse(completion))
-```
-
-
-
-
-- `Response`: The response object received from the GPT model.
-
-### 4. GenerateImage
-
-#### Description
-
-
-Generates an image based on a provided prompt using the DALL-E model.
-
-#### Usage
-
-```python
-import openai_utils as OA
-import openai
-openai.api_key = "sk-????"
-
-OA.GenerateImage(Prompt: str)
-```
-
-- `Prompt`: The text prompt based on which the image will be generated.
-- ``
-## Requirements
-
-- Python 3.x
-- OpenAI API key set as an environment variable or within the code.
+- **Parameters:**
+  - `prompt`: The prompt for generating the image.
+  - `quality`: The quality of the generated image. Default is 'standard'.
+- **Returns:** The generated image.
 
 ## Examples
 
-### Example 1: Generating Text Response
+For detailed examples on how to use each function, refer to the [Usage](#usage) section.
 
-```python
-response = GPT_Response("gpt-3.5-turbo", "What is the capital of France?")
-print(response)
-```
+## Contributing
 
-### Example 2: Creating an Embedding
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you find any bugs or have suggestions for improvements.
 
-```python
-import openai
-import openai_utils as OA
-openai.api_key = "sk-????"
+## License
 
-OA.embedding = CreateEmbedding("Hello, world!")
-print(embedding)
-```
-
-### Example 3: Parsing a GPT Response
-
-```python
-import openai
-import openai_utils as OA
-openai.api_key = "sk-????"
-
-message = [] # Your example messages
-
-completion = client.chat.completions.create(
-  model="gpt-3.5-turbo",
-  messages=message,
-)
-
-parsed_response = formatResponse(completion)
-print(parsed_response)
-```
-
-### Example 4: Generating an Image
-
-```python
-import openai
-import openai_utils as OA
-
-openai.api_key = "sk-????"
-OA.GenerateImage(Prompt: str, Quality = 'hd')
-```
-
-## Additional Notes
-
-- Ensure that you have a valid OpenAI API key.
-- The library is designed to be simple and intuitive, making it easy to integrate OpenAI's powerful models into your applications.
+This library is licensed under the MIT License. See the LICENSE file for more details.
