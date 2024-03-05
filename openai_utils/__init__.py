@@ -36,7 +36,7 @@ def format_response_data(response) -> dict:
         return simplified_data
         
 
-def generate_image_from_prompt(prompt: str, quality: str = 'standard'):
+def generate_image(prompt: str, quality: str = 'standard'):
     image = openai.images.generate(
         model="dall-e-3",
         prompt=prompt,
